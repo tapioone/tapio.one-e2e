@@ -20,7 +20,7 @@ jobs:
           # the below token should have repo scope and must be manually added by you in the repository's secret
           PERSONAL_ACCESS_TOKEN: ${{ secrets.CLA_BOT_PAT }}
         with:
-          path-to-signatures: "signatures/tapioone/docs.json"
+          path-to-signatures: "signatures/tapioone/tapio.one-e2e.json"
           path-to-document: "https://github.com/tapioone/cla/blob/master/README.md"
           branch: "master"
           allowlist: dependabot[bot],dependabot-preview[bot],github-actions[bot]
