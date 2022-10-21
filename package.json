@@ -1,0 +1,22 @@
+{
+  "name": "tapio.one-e2e",
+  "version": "0.0.1",
+  "description": "E2E tests for the tapio.one website",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tapioone/tapio.one-e2e.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tapioone/tapio.one-e2e/issues"
+  },
+  "homepage": "https://github.com/tapioone/tapio.one-e2e#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.27.1"
+  }
+}
