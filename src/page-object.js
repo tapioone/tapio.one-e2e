@@ -1,4 +1,5 @@
 exports.PageObject = class pageObject {
+    
 
     constructor(page) {
         this.page = page;
@@ -16,6 +17,10 @@ exports.PageObject = class pageObject {
         this.linkShop = page.getByText('Shop').nth(1);
 
         this.analyticScript = page.locator('script[src="https://www.google-analytics.com/analytics.js"]');
+        this.header = {
+            selector: ".header",
+            locator: page.locator(this.header.selector)
+        }
         this.header = page.locator('.header');
         this.footer = page.locator('footer');
         this.cookies = page.context().cookies();
