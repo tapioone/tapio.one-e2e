@@ -166,7 +166,7 @@ test('When saving the default state, Google Analytics should be disabled', async
     const pageObject = new PageObject(page);
 
     // save services
-    await pageObject.setDefaultCookies();
+    await pageObject.acceptDefaultCookies();
 
     //expect no google-analytics script
     await expect(pageObject.analyticScript).toHaveCount(0)

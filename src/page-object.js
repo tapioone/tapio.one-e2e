@@ -4,7 +4,7 @@ exports.PageObject = class pageObject {
         this.page = page;
 
         this.buttonAcceptCookies = page.locator("data-testid=uc-accept-all-button");
-        this.buttonSetDefaultCookies = page.locator("data-testid=uc-save-button");
+        this.buttonAcceptDefaultCookies = page.locator("data-testid=uc-save-button");
         this.buttonDenyCookies = page.locator("data-testid=uc-deny-all-button");
         this.buttonScrollToTop = page.locator('.backToTop__ScrollToTopButton-mdwnp9-0');
         this.buttonLanguageDeutsch = page.locator('button', {hasText: 'DE'});
@@ -29,8 +29,8 @@ exports.PageObject = class pageObject {
         await this.buttonDenyCookies.click();
     }
 
-    async setDefaultCookies() {
-        await this.buttonSetDefaultCookies.click();
+    async acceptDefaultCookies() {
+        await this.buttonAcceptDefaultCookies.click();
     }
 
     async acceptCookies() {
