@@ -155,7 +155,7 @@ test.skip('Switching between monthly/yearly billing should change the price', as
 });
 
 
-test('When declining only analytics in cookie consent, Google Analytics should not be loaded 1', async ({ page }) => {
+test('When saving the default state, Google Analytics should be disabled', async ({ page, context }) => {
   await page.goto('https://www.tapio.one/');
 
   // save services
@@ -163,10 +163,16 @@ test('When declining only analytics in cookie consent, Google Analytics should n
 
   //expect no google-analytics script
   await expect(page.locator('script[src="https://www.google-analytics.com/analytics.js"]')).toHaveCount(0)
+
+  // get quantity of cookies
+  const cookiesArrayLength = await (await context.cookies()).length
+
+  // expect no cookies
+  await expect(cookiesArrayLength).toBe(0)
 });
 
 
-test('When declining cookies consent, Google Analytics should not be loaded 2', async ({ page }) => {
+test('When declining all cookies no scripts should be loaded', async ({ page, context }) => {
   await page.goto('https://www.tapio.one/');
 
   // deny cookies 
@@ -174,5 +180,11 @@ test('When declining cookies consent, Google Analytics should not be loaded 2', 
 
   //expect no google-analytics script
   await expect(page.locator('script[src="https://www.google-analytics.com/analytics.js"]')).toHaveCount(0)
+
+  // get quantity of cookies
+  const cookiesArrayLength = await (await context.cookies()).length
+
+  // expect no cookies
+  await expect(cookiesArrayLength).toBe(0)
 });
 
