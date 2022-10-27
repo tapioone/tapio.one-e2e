@@ -127,51 +127,10 @@ test("Scroll to Top should work", async ({ page, pageObject }) => {
   await page.waitForTimeout(1000);
 
   await expect(await page.isInViewPort(pageObject.Header.Selector)).toBe(true);
-
-  // find header box
-  // const headerBox = await pageObject.Header.Locator.boundingBox();
-  //
-  // if (headerBox) {
-  //     const headerY = headerBox.y
-  //     expect(headerY).toBe(0)
-  // }
 });
 
-test.fixme("Switching between monthly/yearly billing should change the price", async ({
-  page,
-  context,
-}) => {
-  // accept cookies
-  await page.locator("data-testid=uc-accept-all-button").click();
-
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Home | tapio /);
-
-  // create a locator
-  const shopLink = page.getByText("Shop").nth(1);
-
-  // Expect an attribute "to be strictly equal" to the value.
-  await expect(shopLink).toHaveAttribute(
-    "href",
-    /https:\/\/customerportal.tapio.one\/marketplace/
-  );
-
-  // Click the get started link. this will open a new tab
-  const [shopPage] = await Promise.all([
-    context.waitForEvent("page"),
-    shopLink.click(),
-  ]);
-
-  // Expects the URL to contain intro.
-  await expect(shopPage).toHaveURL(
-    /https:\/\/customerportal.tapio.one\/marketplace/
-  );
-
-  await page.locator("#cookies-banner-accept-all").click();
-
-  // I can't interact with this landing page =(
-  await page.click("button.buynow >> nth=0");
-  await page.locator(".PromotionTile").nth(0).click();
+test.fixme("Switching between monthly/yearly billing should change the price", async ({}) => {
+    //todo: implement this test. https://www.tapio.one/de/twinio/price
 });
 
 test("When saving the default state, Google Analytics should be disabled", async ({
