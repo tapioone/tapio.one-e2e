@@ -1,4 +1,4 @@
- export async function isInViewport(page: any, selector: string): Promise<boolean> {
+ export async function IsInViewport(page: any, selector: string): Promise<boolean> {
     return page.$eval(selector, async element => {
         const visibleRatio: number = await new Promise(resolve => {
             const observer = new IntersectionObserver(entries => {
