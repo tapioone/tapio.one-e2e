@@ -1,6 +1,8 @@
 import {test, expect} from '@playwright/test';
 
-const {PageObject} = require('./page-object');
+import { PageObject } from "./PageObject";
+
+// const {PageObject} = require('./page-object');
 
 test.beforeEach(async ({page}) => {
     const pageObject = new PageObject(page);
@@ -17,7 +19,7 @@ test('Home Page has correct title and can open shop', async ({page, context}) =>
     await expect(page).toHaveTitle(/Home | tapio /);
 
     // create a locator
-    const shopLink = pageObject.linkShop;
+    const shopLink = pageObject.LinkShop;
 
     // Expect an attribute "to be strictly equal" to the value.
     await expect(shopLink).toHaveAttribute('href', /https:\/\/customerportal.tapio.one\/marketplace/);
@@ -105,7 +107,7 @@ test('Scroll to Top should work', async ({page}) => {
     await pageObject.acceptCookies();
 
     // find footer box
-    const footerBox = await pageObject.footer.boundingBox();
+    const footerBox = await pageObject.Footer.Locator.boundingBox();
 
     await page.waitForTimeout(1000)
 
@@ -123,7 +125,7 @@ test('Scroll to Top should work', async ({page}) => {
     await page.waitForTimeout(1000)
 
     // find header box
-    const headerBox = await pageObject.header.boundingBox();
+    const headerBox = await pageObject.Header.Locator.boundingBox();
 
     if (headerBox) {
         const headerY = headerBox.y
@@ -169,10 +171,10 @@ test('When saving the default state, Google Analytics should be disabled', async
     await pageObject.acceptDefaultCookies();
 
     //expect no google-analytics script
-    await expect(pageObject.analyticScript).toHaveCount(0)
+    await expect(pageObject.AnalyticScript.Locator).toHaveCount(0)
 
     // get quantity of cookies
-    const cookiesArrayLength = await (await pageObject.cookies).length
+    const cookiesArrayLength = await (await pageObject.Cookies).length
 
     // expect no cookies
     await expect(cookiesArrayLength).toBe(0)
@@ -186,10 +188,10 @@ test('When declining all cookies no scripts should be loaded', async ({page}) =>
     await pageObject.denyCookies()
 
     //expect no google-analytics script
-    await expect(pageObject.analyticScript).toHaveCount(0)
+    await expect(pageObject.AnalyticScript.Locator).toHaveCount(0)
 
     // get quantity of cookies
-    const cookiesArrayLength = await (await pageObject.cookies).length
+    const cookiesArrayLength = await (await pageObject.Cookies).length
 
     // expect no cookies
     await expect(cookiesArrayLength).toBe(0)
