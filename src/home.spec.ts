@@ -1,8 +1,7 @@
-import {test, expect} from '@playwright/test';
+import {expect, test} from '@playwright/test';
+import {isInViewport} from "./helper";
+import {PageObject} from "./PageObject";
 
-import { PageObject } from "./PageObject";
-
-// const {PageObject} = require('./page-object');
 
 test.beforeEach(async ({page}) => {
     const pageObject = new PageObject(page);
@@ -100,7 +99,7 @@ test('Switching the language should work', async ({page}) => {
 });
 
 
-test('Scroll to Top should work', async ({page}) => {
+test.only('Scroll to Top should work', async ({page}) => {
     const pageObject = new PageObject(page);
 
     // accept cookies
@@ -124,13 +123,15 @@ test('Scroll to Top should work', async ({page}) => {
 
     await page.waitForTimeout(1000)
 
-    // find header box
-    const headerBox = await pageObject.Header.Locator.boundingBox();
+    await expect(await isInViewport(page, pageObject.Header.Selector)).toBe(true)
 
-    if (headerBox) {
-        const headerY = headerBox.y
-        expect(headerY).toBe(0)
-    }
+    // find header box
+    // const headerBox = await pageObject.Header.Locator.boundingBox();
+    //
+    // if (headerBox) {
+    //     const headerY = headerBox.y
+    //     expect(headerY).toBe(0)
+    // }
 });
 
 
